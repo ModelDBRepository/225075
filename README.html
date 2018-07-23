@@ -1,0 +1,51 @@
+<html>
+<p>This is the README file for simulation codes associated with:
+</p>
+<p>Hiratani N, Fukai T (2018) Redundancy in synaptic connections enables neurons to learn optimally. Proc Natl Acad Sci U S A<br/>
+  <a href="http://dx.doi.org/10.1073/pnas.1803274115">http://dx.doi.org/10.1073/pnas.1803274115</a>
+</p>
+<p>The codes were created based on the L2/3 cell model in Smith et al. (2013)
+(<a href="http://www.opensourcebrain.org/projects/l23dendriticspikes">http://www.opensourcebrain.org/projects/l23dendriticspikes</a>).
+</p>
+<p>This code was contributed by N Hiratani and questions should be addressed to n.hiratani"at"gmail.com
+</p>
+<p>"neuron_simulation.py" is the main simulation code from which Figure 3-5 in the manuscript were generated. 
+To run the simulation, first type "nrnivmodl" for compiling the mod files, then run "neuron_simulation.py" as a standard python program. 
+The program receives six parameters from the standard input as below:
+</p>
+<p>[1]Kin: The number of synapses per connection. Here, the total number of presynaptic neurons is fixed at Min = 200, so that the total number of synaptic connections is given as Nin = Kin*Min.
+</p>
+<p>[2]gmax: The standard excitatory conductance. The synaptic weight of the i-th synaptic contact was defined by gmax*uks[i].
+</p>
+<p>[3]gI: The standard inhibitory conductance. All inhibitory weights were set to gI.
+</p>
+<p>[4]uk_min: Minimum value of the spine size.
+</p>
+<p>[5]sd_bias: Bias in synaptic distribution. If sd_bias &lt; 1.0, then the synaptic distribution is biased towards the proximal side and vice versa.  
+</p>
+<p>[6]release_probability: Release probability of synaptic vesicle at excitatory synapses.
+</p>
+<p>Then, the program generates (some of) following output files:
+</p>
+<p>nrn_simul_vkappas_... : Te value of the unit EPSP at each dendritic section.
+nrn_simul_perf_... : EPSP heights and areas for test stimuli.
+nrn_simul_duvk_... : Values of synaptic weight uk and unit EPSP vk.
+nrn_simul_mbps/nrn_simul_mbpf : The somatic membrane dynamics before/after learning.
+</p>
+Example Run:<br/>
+------------<p/>
+To generate a figure similar to Fig 3E in the paper run with the parameters:<p/>
+
+python neuron_simulation.py 5 0.0025 0.00075 0.001 1.0 1.0
+<p/>
+This takes about 25 minutes to complete on a 2012 MacBook Pro. Run the graphing program:<p/>
+python md_readout.py
+<p/>
+The figure differs from the paper due to random number differences however will look similar:<p/>
+<img src="./screenshot.png" alt="screenshot">
+  <p/>
+  Generation of data used in other panels, especially those in Figures 4 and 5 take a long times in a standard computer, so I am not sure if it is useful to add all the code. Additionally the model files would be messy and highly redundant in that case. 
+Still, all these codes are available upon reasonable request to 
+ n.hiratani"at"gmail.com
+</p>
+</html>

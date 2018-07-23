@@ -18,7 +18,6 @@ import random as pyrnd
 import matplotlib.pyplot as plt
 import scipy.special as scisp
 
-load_mechanisms('/directory_where_mod_files_have_been_compiled')
 h('objref nil')
 
 # ----------------------------------------------------------
